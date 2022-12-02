@@ -4,9 +4,10 @@ use std::{
     iter::Map,
 };
 
-pub fn read(
-    file: &str,
-) -> Map<Lines<BufReader<File>>, fn(Result<String, std::io::Error>) -> String> {
+pub fn read<T, F>(file: &str, mapper: F) -> Map<Lines<BufReader<File>>, F>
+where
+    F: FnMut(Result<String, io::Error>) -> T,
+{
     let file = File::open(file).expect("to open the file");
-    io::BufReader::new(file).lines().map(|l| l.unwrap())
+    io::BufReader::new(file).lines().map(mapper)
 }

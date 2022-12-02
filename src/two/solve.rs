@@ -1,5 +1,4 @@
-use std::io::{self, BufRead};
-use std::{collections::HashMap, fs::File};
+use std::collections::HashMap;
 
 use crate::util::read::read;
 
@@ -10,10 +9,7 @@ const PAPER: i32 = 2;
 const SCISSORS: i32 = 3;
 
 pub fn a(input: &str) -> String {
-    let file = File::open(input).expect("to open the file");
-    let lines = io::BufReader::new(file)
-        .lines()
-        .map(|l| l.unwrap().chars().collect::<Vec<char>>());
+    let lines = read(input, |l| l.unwrap().chars().collect::<Vec<char>>());
     let mut score: i32 = 0;
     for l in lines {
         let lhs = l.first().unwrap();
@@ -44,7 +40,7 @@ pub fn a(input: &str) -> String {
 }
 
 pub fn b(input: &str) -> String {
-    let lines = read(input);
+    let lines = read(input, |l| l.unwrap());
 
     let mapping = HashMap::from([
         ("A X", SCISSORS),

@@ -1,9 +1,7 @@
 use crate::util::read::read;
 
 pub fn a(input: &str) -> String {
-    // let file = File::open(input).expect("to open the file");
-    // let lines = io::BufReader::new(file).lines().map(|l| l.unwrap());
-    let lines = read(input);
+    let lines = read(input, |l| l.unwrap());
     let mut elf: i32 = 0;
     let mut max_elf: i32 = 0;
 
@@ -22,7 +20,7 @@ pub fn a(input: &str) -> String {
 }
 
 pub fn b(input: &str) -> String {
-    let lines = read(input);
+    let lines = read(input, |l| l.unwrap());
     let mut elf: i32 = 0;
     let mut max_elfs: [i32; 3] = [0; 3];
 
