@@ -1,6 +1,8 @@
 use std::io::{self, BufRead};
 use std::{collections::HashMap, fs::File};
 
+use crate::util::read::read;
+
 const WIN: i32 = 6;
 const DRAW: i32 = 3;
 const ROCK: i32 = 1;
@@ -42,8 +44,7 @@ pub fn a(input: &str) -> String {
 }
 
 pub fn b(input: &str) -> String {
-    let file = File::open(input).expect("to open the file");
-    let lines = io::BufReader::new(file).lines().map(|l| l.unwrap());
+    let lines = read(input);
 
     let mapping = HashMap::from([
         ("A X", SCISSORS),
