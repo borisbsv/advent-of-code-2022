@@ -4,20 +4,18 @@ use crate::util::read::read;
 
 pub fn a(input: &str) -> String {
     let lines = read(input, |l| l.unwrap().as_bytes().to_owned());
-
-    let res: i32 = lines.fold(0, |acc, l| {
-        let (lhs, rhs) = l.split_at(l.len() / 2);
-        let mut curr = acc;
-        for lv in lhs.iter() {
-            if rhs.contains(lv) {
-                curr += priority(*lv);
-                break;
+    lines
+        .map(|l| {
+            let (lhs, rhs) = l.split_at(l.len() / 2);
+            for lv in lhs.iter() {
+                if rhs.contains(lv) {
+                    return priority(*lv);
+                }
             }
-        }
-        curr
-    });
-
-    res.to_string()
+            0
+        })
+        .sum::<i32>()
+        .to_string()
 }
 
 pub fn b(input: &str) -> String {
