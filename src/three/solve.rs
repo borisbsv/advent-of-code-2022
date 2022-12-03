@@ -9,9 +9,8 @@ pub fn a(input: &str) -> String {
         let (lhs, rhs) = l.split_at(l.len() / 2);
         let mut curr = acc;
         for lv in lhs.iter() {
-            let d = if lv.is_ascii_lowercase() { 96 } else { 38 };
             if rhs.contains(lv) {
-                curr += (*lv as i32) - d;
+                curr += priority(*lv);
                 break;
             }
         }
