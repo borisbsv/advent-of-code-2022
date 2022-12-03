@@ -30,17 +30,13 @@ pub fn b(input: &str) -> String {
             .collect::<HashSet<u8>>()
     })
     .collect();
-    let mut i = 0;
     let mut sum = 0;
-    while i < lines.len() {
-        let mut l1: HashSet<u8> = lines[i].clone();
-        let l2: &HashSet<u8> = &lines[i + 1];
-        let l3: &HashSet<u8> = &lines[i + 2];
-        l1.retain(|l| l2.contains(l) && l3.contains(l));
+
+    for ch in lines.chunks(3) {
+        let mut l1: HashSet<u8> = ch[0].clone();
+        l1.retain(|l| ch[1].contains(l) && ch[2].contains(l));
 
         sum += priority(*l1.iter().next().unwrap());
-
-        i += 3;
     }
 
     sum.to_string()
