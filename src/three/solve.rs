@@ -21,13 +21,21 @@ pub fn a(input: &str) -> String {
 }
 
 pub fn b(input: &str) -> String {
-    let lines = read(input, |l| l.unwrap().as_bytes().to_owned()).collect::<Vec<Vec<u8>>>();
+    let lines: Vec<HashSet<u8>> = read(input, |l| {
+        l.unwrap()
+            .as_bytes()
+            .to_owned()
+            .iter()
+            .cloned()
+            .collect::<HashSet<u8>>()
+    })
+    .collect();
     let mut i = 0;
     let mut sum = 0;
     while i < lines.len() {
-        let mut l1: HashSet<u8> = lines[i].iter().cloned().collect();
-        let l2: HashSet<u8> = lines[i + 1].iter().cloned().collect();
-        let l3: HashSet<u8> = lines[i + 2].iter().cloned().collect();
+        let mut l1: HashSet<u8> = lines[i].clone();
+        let l2: &HashSet<u8> = &lines[i + 1];
+        let l3: &HashSet<u8> = &lines[i + 2];
         l1.retain(|l| l2.contains(l) && l3.contains(l));
 
         sum += priority(*l1.iter().next().unwrap());
