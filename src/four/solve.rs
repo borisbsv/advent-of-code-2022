@@ -19,17 +19,15 @@ pub fn b(input: &str) -> String {
 
 fn parse(input: &str) -> impl Iterator<Item = ((i32, i32), (i32, i32))> {
     read(input, |l| {
-        let each: Vec<&str> = l.as_ref().unwrap().split(',').collect();
+        let each = l.as_ref().unwrap().split_once(',').unwrap();
 
         let mut lhs: Vec<i32> = each
-            .first()
-            .unwrap()
+            .0
             .split('-')
             .map(|d| d.parse::<i32>().unwrap())
             .collect();
         let mut rhs: Vec<i32> = each
-            .get(1)
-            .unwrap()
+            .1
             .split('-')
             .map(|d| d.parse::<i32>().unwrap())
             .collect();
