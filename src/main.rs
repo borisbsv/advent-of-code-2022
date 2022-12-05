@@ -1,3 +1,4 @@
+mod five;
 mod four;
 mod one;
 mod three;
@@ -14,4 +15,6 @@ fn main() {
     println!("{}", three::solve::b("src/three/input"));
     println!("{}", four::solve::a("src/four/input"));
     println!("{}", four::solve::b("src/four/input"));
+    println!("{}", five::solve::a("src/five/input"));
+    println!("{}", five::solve::b("src/five/input"));
 }
