@@ -44,10 +44,7 @@ fn bench(f: fn(&str) -> String, input: &str) -> Result {
     use std::time::Instant;
     let now = Instant::now();
     let res = f(input);
+    let elapsed = now.elapsed();
 
-    Result(
-        input.split('/').nth(1).unwrap().to_string(),
-        res,
-        now.elapsed(),
-    )
+    Result(input.split('/').nth(1).unwrap().to_string(), res, elapsed)
 }
