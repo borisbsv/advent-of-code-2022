@@ -13,7 +13,7 @@ pub fn a(input: &str) -> String {
                 }
                 elf = 0;
             }
-            n => elf += n.parse::<i32>().unwrap_or_default(),
+            n => elf += n.parse::<i32>().unwrap(),
         }
     }
     max_elf.to_string()
@@ -36,7 +36,7 @@ pub fn b(input: &str) -> String {
                 }
                 elf = 0;
             }
-            n => elf += n.parse::<i32>().unwrap_or_default(),
+            n => elf += n.parse::<i32>().unwrap(),
         }
     }
     max_elfs.iter().sum::<i32>().to_string()
