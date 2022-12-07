@@ -1,10 +1,10 @@
 use crate::util::read::read;
 
-pub fn a(input: &str) -> String {
+pub(crate) fn a(input: &str) -> String {
     solve(input, 4)
 }
 
-pub fn b(input: &str) -> String {
+pub(crate) fn b(input: &str) -> String {
     solve(input, 14)
 }
 

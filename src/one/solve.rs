@@ -1,6 +1,6 @@
 use crate::util::read::read;
 
-pub fn a(input: &str) -> String {
+pub(crate) fn a(input: &str) -> String {
     let lines = read(input, |l| l.unwrap());
     let mut elf: i32 = 0;
     let mut max_elf: i32 = 0;
@@ -19,7 +19,7 @@ pub fn a(input: &str) -> String {
     max_elf.to_string()
 }
 
-pub fn b(input: &str) -> String {
+pub(crate) fn b(input: &str) -> String {
     let lines = read(input, |l| l.unwrap());
     let mut elf: i32 = 0;
     let mut max_elfs: [i32; 3] = [0; 3];

@@ -1,7 +1,7 @@
 use crate::util::read::read;
 use regex::Regex;
 
-pub fn a(input: &str) -> String {
+pub(crate) fn a(input: &str) -> String {
     let lines: Vec<_> = read(input, |l| l.unwrap().chars().collect::<Vec<char>>()).collect();
     let l = lines.split(|l| l.is_empty()).collect::<Vec<_>>();
 
@@ -21,7 +21,7 @@ pub fn a(input: &str) -> String {
         .collect()
 }
 
-pub fn b(input: &str) -> String {
+pub(crate) fn b(input: &str) -> String {
     let lines: Vec<_> = read(input, |l| l.unwrap().chars().collect::<Vec<char>>()).collect();
     let l = lines.split(|l| l.is_empty()).collect::<Vec<_>>();
 

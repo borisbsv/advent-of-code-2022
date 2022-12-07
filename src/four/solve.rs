@@ -1,6 +1,6 @@
 use crate::util::read::read;
 
-pub fn a(input: &str) -> String {
+pub(crate) fn a(input: &str) -> String {
     let assgmts = parse(input);
     let sum: i32 = assgmts
         .map(|(lhs, rhs)| {
@@ -10,7 +10,7 @@ pub fn a(input: &str) -> String {
     sum.to_string()
 }
 
-pub fn b(input: &str) -> String {
+pub(crate) fn b(input: &str) -> String {
     parse(input)
         .map(|(lhs, rhs)| i32::from(lhs.0 <= rhs.1 && rhs.0 <= lhs.1))
         .sum::<i32>()

@@ -2,7 +2,7 @@ use std::collections::HashSet;
 
 use crate::util::read::read;
 
-pub fn a(input: &str) -> String {
+pub(crate) fn a(input: &str) -> String {
     let lines = read(input, |l| l.unwrap().as_bytes().to_owned());
     lines
         .map(|l| {
@@ -18,7 +18,7 @@ pub fn a(input: &str) -> String {
         .to_string()
 }
 
-pub fn b(input: &str) -> String {
+pub(crate) fn b(input: &str) -> String {
     let lines: Vec<HashSet<u8>> = read(input, |l| {
         l.unwrap()
             .as_bytes()

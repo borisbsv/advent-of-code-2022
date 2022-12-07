@@ -11,6 +11,7 @@ mod two;
 mod util;
 
 fn main() {
+    println!("┌{}┬{}┬{}┐", "─".repeat(14), "─".repeat(29), "─".repeat(17));
     println!("{}", bench(one::solve::a, "src/one/input"));
     println!("{}", bench(one::solve::b, "src/one/input"));
     println!("{}", bench(two::solve::a, "src/two/input"));
@@ -25,12 +26,17 @@ fn main() {
     println!("{}", bench(six::solve::b, "src/six/input"));
     println!("{}", bench(seven::solve::a, "src/seven/input"));
     println!("{}", bench(seven::solve::b, "src/seven/input"));
+    println!("└{}┴{}┴{}┘", "─".repeat(14), "─".repeat(29), "─".repeat(17));
 }
-struct Result(String, std::time::Duration);
+struct Result(String, String, std::time::Duration);
 impl fmt::Display for Result {
     // This trait requires `fmt` with this exact signature.
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "result: {:20}| took: {:?}", self.0, self.1)
+        write!(
+            f,
+            "│day {:10}│ result: {:20}│ took: {:10?}│",
+            self.0, self.1, self.2
+        )
     }
 }
 
@@ -39,5 +45,9 @@ fn bench(f: fn(&str) -> String, input: &str) -> Result {
     let now = Instant::now();
     let res = f(input);
 
-    Result(res, now.elapsed())
+    Result(
+        input.split('/').nth(1).unwrap().to_string(),
+        res,
+        now.elapsed(),
+    )
 }
