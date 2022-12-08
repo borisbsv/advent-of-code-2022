@@ -1,6 +1,6 @@
 use crate::util::read::read;
 
-pub(crate) fn a(input: &str) -> String {
+pub(crate) fn a(input: &str) -> i32 {
     let lines = read(input, |l| l.unwrap());
     let mut elf: i32 = 0;
     let mut max_elf: i32 = 0;
@@ -16,10 +16,10 @@ pub(crate) fn a(input: &str) -> String {
             n => elf += n.parse::<i32>().unwrap(),
         }
     }
-    max_elf.to_string()
+    max_elf
 }
 
-pub(crate) fn b(input: &str) -> String {
+pub(crate) fn b(input: &str) -> i32 {
     let lines = read(input, |l| l.unwrap());
     let mut elf: i32 = 0;
     let mut max_elfs: [i32; 3] = [0; 3];
@@ -39,5 +39,5 @@ pub(crate) fn b(input: &str) -> String {
             n => elf += n.parse::<i32>().unwrap(),
         }
     }
-    max_elfs.iter().sum::<i32>().to_string()
+    max_elfs.iter().sum::<i32>()
 }

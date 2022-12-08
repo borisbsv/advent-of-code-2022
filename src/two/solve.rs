@@ -8,7 +8,7 @@ const ROCK: i32 = 1;
 const PAPER: i32 = 2;
 const SCISSORS: i32 = 3;
 
-pub(crate) fn a(input: &str) -> String {
+pub(crate) fn a(input: &str) -> i32 {
     let lines = read(input, |l| l.unwrap().chars().collect::<Vec<char>>());
     let mut score: i32 = 0;
     for l in lines {
@@ -36,10 +36,10 @@ pub(crate) fn a(input: &str) -> String {
             _ => {}
         }
     }
-    score.to_string()
+    score
 }
 
-pub(crate) fn b(input: &str) -> String {
+pub(crate) fn b(input: &str) -> i32 {
     let lines = read(input, |l| l.unwrap());
 
     let mapping = HashMap::from([
@@ -57,5 +57,5 @@ pub(crate) fn b(input: &str) -> String {
     for l in lines {
         score += mapping.get(&l.as_str()).unwrap();
     }
-    score.to_string()
+    score
 }

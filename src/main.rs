@@ -43,11 +43,15 @@ impl fmt::Display for Result {
     }
 }
 
-fn bench(f: fn(&str) -> String, input: &str) -> Result {
+fn bench<T: ToString>(f: fn(&str) -> T, input: &str) -> Result {
     use std::time::Instant;
     let now = Instant::now();
     let res = f(input);
     let elapsed = now.elapsed();
 
-    Result(input.split('/').nth(1).unwrap().to_string(), res, elapsed)
+    Result(
+        input.split('/').nth(1).unwrap().to_string(),
+        res.to_string(),
+        elapsed,
+    )
 }

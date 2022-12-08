@@ -1,14 +1,14 @@
 use crate::util::read::read;
 
-pub(crate) fn a(input: &str) -> String {
+pub(crate) fn a(input: &str) -> usize {
     solve(input, 4)
 }
 
-pub(crate) fn b(input: &str) -> String {
+pub(crate) fn b(input: &str) -> usize {
     solve(input, 14)
 }
 
-fn solve(input: &str, count: usize) -> String {
+fn solve(input: &str, count: usize) -> usize {
     let line: Vec<_> = read(input, |l| l.unwrap().chars().collect::<Vec<char>>())
         .collect::<Vec<_>>()
         .first()
@@ -21,10 +21,10 @@ fn solve(input: &str, count: usize) -> String {
 
     for (i, c) in iter.enumerate() {
         if !(1..last_n.len()).any(|i| last_n[i..].contains(&last_n[i - 1])) {
-            return (i).to_string();
+            return i;
         }
         last_n[0] = c;
         last_n.rotate_left(1);
     }
-    "".to_string()
+    0
 }

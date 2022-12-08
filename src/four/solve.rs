@@ -1,20 +1,18 @@
 use crate::util::read::read;
 
-pub(crate) fn a(input: &str) -> String {
+pub(crate) fn a(input: &str) -> i32 {
     let assgmts = parse(input);
-    let sum: i32 = assgmts
+    assgmts
         .map(|(lhs, rhs)| {
             i32::from((lhs.0 <= rhs.0 && lhs.1 >= rhs.1) || (rhs.0 <= lhs.0 && rhs.1 >= lhs.1))
         })
-        .sum();
-    sum.to_string()
+        .sum()
 }
 
-pub(crate) fn b(input: &str) -> String {
+pub(crate) fn b(input: &str) -> i32 {
     parse(input)
         .map(|(lhs, rhs)| i32::from(lhs.0 <= rhs.1 && rhs.0 <= lhs.1))
         .sum::<i32>()
-        .to_string()
 }
 
 fn parse(input: &str) -> impl Iterator<Item = ((i32, i32), (i32, i32))> {

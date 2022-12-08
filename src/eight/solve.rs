@@ -1,8 +1,8 @@
-use std::{collections::HashSet, iter::Enumerate};
+use std::collections::HashSet;
 
 use crate::util::read::read;
 
-pub(crate) fn a(input: &str) -> String {
+pub(crate) fn a(input: &str) -> i32 {
     let lines = read(input, |l| {
         l.unwrap()
             .chars()
@@ -57,10 +57,10 @@ pub(crate) fn a(input: &str) -> String {
         })
     });
 
-    count.to_string()
+    count
 }
 
-pub(crate) fn b(input: &str) -> String {
+pub(crate) fn b(input: &str) -> u32 {
     let lines = read(input, |l| {
         l.unwrap()
             .chars()
@@ -81,7 +81,7 @@ pub(crate) fn b(input: &str) -> String {
         }
     }
 
-    max.to_string()
+    max
 }
 
 fn matrix_transpose(m: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
@@ -94,11 +94,7 @@ fn matrix_transpose(m: &Vec<Vec<i32>>) -> Vec<Vec<i32>> {
     t
 }
 
-fn scenic_score(
-    matrix: &Vec<Vec<i32>>,
-    rotated_matrix: &Vec<Vec<i32>>,
-    coord: (usize, usize),
-) -> u32 {
+fn scenic_score(matrix: &[Vec<i32>], rotated_matrix: &[Vec<i32>], coord: (usize, usize)) -> u32 {
     let tree = matrix[coord.0][coord.1];
     // left
     let mut left: u32 = 0;

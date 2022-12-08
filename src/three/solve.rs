@@ -2,7 +2,7 @@ use std::collections::HashSet;
 
 use crate::util::read::read;
 
-pub(crate) fn a(input: &str) -> String {
+pub(crate) fn a(input: &str) -> i32 {
     let lines = read(input, |l| l.unwrap().as_bytes().to_owned());
     lines
         .map(|l| {
@@ -15,10 +15,9 @@ pub(crate) fn a(input: &str) -> String {
             0
         })
         .sum::<i32>()
-        .to_string()
 }
 
-pub(crate) fn b(input: &str) -> String {
+pub(crate) fn b(input: &str) -> i32 {
     let lines: Vec<HashSet<u8>> = read(input, |l| {
         l.unwrap()
             .as_bytes()
@@ -37,7 +36,7 @@ pub(crate) fn b(input: &str) -> String {
         sum += priority(*l1.iter().next().unwrap());
     }
 
-    sum.to_string()
+    sum
 }
 
 fn priority(i: u8) -> i32 {

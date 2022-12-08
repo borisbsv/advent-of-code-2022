@@ -105,13 +105,13 @@ fn recurse_value(root: &DirTree) -> u32 {
     subdir_total + root.size.filter(|s| s <= &100_000).unwrap_or_default()
 }
 
-pub(crate) fn a(input: &str) -> String {
+pub(crate) fn a(input: &str) -> u32 {
     let mut tree = make_tree(read(input, |l| l.unwrap().parse::<Line>().unwrap()));
     tree.size();
-    recurse_value(&tree).to_string()
+    recurse_value(&tree)
 }
 
-pub(crate) fn b(input: &str) -> String {
+pub(crate) fn b(input: &str) -> u32 {
     let mut tree = make_tree(read(input, |l| l.unwrap().parse::<Line>().unwrap()));
     tree.size();
 
@@ -127,5 +127,5 @@ pub(crate) fn b(input: &str) -> String {
         dirs.extend(d.children.values());
     }
 
-    min.to_string()
+    min
 }
