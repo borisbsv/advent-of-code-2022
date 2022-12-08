@@ -43,7 +43,7 @@ impl fmt::Display for Result {
     }
 }
 
-fn bench<T: ToString>(f: fn(&str) -> T, input: &str) -> Result {
+fn bench<T: ToString>(f: impl FnOnce(&str) -> T, input: &str) -> Result {
     use std::time::Instant;
     let now = Instant::now();
     let res = f(input);
