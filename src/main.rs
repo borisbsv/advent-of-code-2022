@@ -1,5 +1,6 @@
 use std::fmt;
 
+mod eight;
 mod five;
 mod four;
 mod one;
@@ -26,6 +27,8 @@ fn main() {
     println!("{}", bench(six::solve::b, "src/six/input"));
     println!("{}", bench(seven::solve::a, "src/seven/input"));
     println!("{}", bench(seven::solve::b, "src/seven/input"));
+    println!("{}", bench(eight::solve::a, "src/eight/input"));
+    println!("{}", bench(eight::solve::b, "src/eight/input"));
     println!("└{}┴{}┴{}┘", "─".repeat(14), "─".repeat(29), "─".repeat(17));
 }
 struct Result(String, String, std::time::Duration);
