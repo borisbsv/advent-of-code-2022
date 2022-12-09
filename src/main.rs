@@ -3,6 +3,7 @@ use std::fmt;
 mod eight;
 mod five;
 mod four;
+mod nine;
 mod one;
 mod seven;
 mod six;
@@ -12,7 +13,7 @@ mod two;
 mod util;
 
 fn main() {
-    println!("┌{}┬{}┬{}┐", "─".repeat(14), "─".repeat(29), "─".repeat(17));
+    println!("┌{}┬{}┬{}┐", "─".repeat(14), "─".repeat(29), "─".repeat(19));
     println!("{}", bench(one::solve::a, "src/one/input"));
     println!("{}", bench(one::solve::b, "src/one/input"));
     println!("{}", bench(two::solve::a, "src/two/input"));
@@ -29,15 +30,19 @@ fn main() {
     println!("{}", bench(seven::solve::b, "src/seven/input"));
     println!("{}", bench(eight::solve::a, "src/eight/input"));
     println!("{}", bench(eight::solve::b, "src/eight/input"));
-    println!("└{}┴{}┴{}┘", "─".repeat(14), "─".repeat(29), "─".repeat(17));
+    println!("{}", bench(nine::solve::a, "src/nine/input"));
+    println!("{}", bench(nine::solve::b, "src/nine/input"));
+    println!("└{}┴{}┴{}┘", "─".repeat(14), "─".repeat(29), "─".repeat(19));
 }
+
 struct Result(String, String, std::time::Duration);
+
 impl fmt::Display for Result {
     // This trait requires `fmt` with this exact signature.
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "│day {:10}│ result: {:20}│ took: {:10?}│",
+            "│day {:10}│ result: {:20}│ took: {:12?}│",
             self.0, self.1, self.2
         )
     }
