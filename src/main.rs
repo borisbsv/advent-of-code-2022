@@ -7,6 +7,7 @@ mod nine;
 mod one;
 mod seven;
 mod six;
+mod ten;
 mod three;
 mod two;
 
@@ -32,6 +33,7 @@ fn main() {
     println!("{}", bench(eight::solve::b, "src/eight/input"));
     println!("{}", bench(nine::solve::a, "src/nine/input"));
     println!("{}", bench(nine::solve::b, "src/nine/input"));
+    println!("{}", bench(ten::solve::a, "src/ten/input"));
     println!("└{}┴{}┴{}┘", "─".repeat(14), "─".repeat(29), "─".repeat(19));
 }
 
