@@ -75,7 +75,7 @@ pub(crate) fn b(input: &str) -> u64 {
     let mut inspections: Vec<u64> = vec![0; monkeys.len()];
 
     let mut items: Vec<Vec<u64>> = monkeys.iter().map(|monkey| monkey.items.to_vec()).collect();
-    for _ in 0..1000 {
+    for _ in 0..10_000 {
         for (i, monkey) in monkeys.iter().enumerate() {
             let these_items: Vec<u64> = items[i].drain(..).collect();
 
