@@ -20,7 +20,25 @@ pub(crate) fn a(input: &str) -> usize {
         })
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+pub(crate) fn b(input: &str) -> usize {
+    let d1 = Packet::List(vec![Packet::List(vec![Packet::Int(2)])]);
+    let d2 = Packet::List(vec![Packet::List(vec![Packet::Int(6)])]);
+
+    let packets: Vec<Packet> = read(input, |l| -> String { l.unwrap() })
+        .filter(|l| !l.is_empty())
+        .map(|l| parse(&mut l.chars().peekable()).remove(0))
+        .collect();
+    let mut t = vec![d1.clone(), d2.clone()];
+    t.extend(packets);
+    t.sort_by(compare);
+
+    let i1 = t.binary_search_by(|p| compare(p, &d1)).unwrap() + 1;
+    let i2 = t.binary_search_by(|p| compare(p, &d2)).unwrap() + 1;
+
+    i1 * i2
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 enum Packet {
     List(Vec<Packet>),
     Int(u32),

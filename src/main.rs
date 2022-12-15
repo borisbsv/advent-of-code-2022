@@ -42,6 +42,7 @@ fn main() {
     println!("{}", bench(twelve::solve::a, "src/twelve/input"));
     println!("{}", bench(twelve::solve::b, "src/twelve/input"));
     println!("{}", bench(thirteen::solve::a, "src/thirteen/input"));
+    println!("{}", bench(thirteen::solve::b, "src/thirteen/input"));
     println!("└{}┴{}┴{}┘", "─".repeat(14), "─".repeat(29), "─".repeat(19));
 }
 
