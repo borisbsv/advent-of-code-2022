@@ -14,12 +14,9 @@ pub(crate) fn a(input: &str) -> usize {
         })
         .map(|(lhs, rhs)| compare(&lhs, &rhs))
         .enumerate()
-        .fold(0, |acc, (i, res)| {
-            println!("{}", acc);
-            match res {
-                Ordering::Less => acc + i + 1,
-                _ => acc,
-            }
+        .fold(0, |acc, (i, res)| match res {
+            Ordering::Less => acc + i + 1,
+            _ => acc,
         })
 }
 
@@ -35,7 +32,9 @@ fn parse(packet: &mut impl Iterator<Item = char>) -> Vec<Packet> {
         match c {
             ',' => {}
             '[' => elements.push(Packet::List(parse(packet))), // create new child
-            ']' => {}                                          // go to parent
+            ']' => {
+                return elements;
+            } // go to parent
             x => elements.push(Packet::Int(x.to_digit(10).unwrap())), // append x
         }
     }
