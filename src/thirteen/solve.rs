@@ -1,4 +1,4 @@
-use std::cmp::Ordering;
+use std::{cmp::Ordering, iter::Peekable};
 
 use crate::util::read::read;
 
@@ -8,8 +8,8 @@ pub(crate) fn a(input: &str) -> usize {
         .split(|l| l.is_empty())
         .map(|c| {
             (
-                parse(&mut c[0].chars()).remove(0),
-                parse(&mut c[1].chars()).remove(0),
+                parse(&mut c[0].chars().peekable()).remove(0),
+                parse(&mut c[1].chars().peekable()).remove(0),
             )
         })
         .map(|(lhs, rhs)| compare(&lhs, &rhs))
@@ -26,7 +26,7 @@ enum Packet {
     Int(u32),
 }
 
-fn parse(packet: &mut impl Iterator<Item = char>) -> Vec<Packet> {
+fn parse(packet: &mut Peekable<impl Iterator<Item = char>>) -> Vec<Packet> {
     let mut elements = vec![];
     while let Some(c) = packet.next() {
         match c {
@@ -35,7 +35,17 @@ fn parse(packet: &mut impl Iterator<Item = char>) -> Vec<Packet> {
             ']' => {
                 return elements;
             } // go to parent
-            x => elements.push(Packet::Int(x.to_digit(10).unwrap())), // append x
+            x => {
+                let mut temp = x.to_string();
+                while packet.peek().is_some() {
+                    let x = packet.next().unwrap();
+                    if !x.is_ascii_digit() {
+                        break;
+                    }
+                    temp.push(x);
+                }
+                elements.push(Packet::Int(temp.parse().unwrap())) // append x
+            }
         }
     }
     elements
