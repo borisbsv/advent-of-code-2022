@@ -37,11 +37,11 @@ fn parse(packet: &mut Peekable<impl Iterator<Item = char>>) -> Vec<Packet> {
             } // go to parent
             x => {
                 let mut temp = x.to_string();
-                while packet.peek().is_some() {
-                    let x = packet.next().unwrap();
-                    if !x.is_ascii_digit() {
+                while let Some(test) = packet.peek() {
+                    if !test.is_ascii_digit() {
                         break;
                     }
+                    let x = packet.next().unwrap();
                     temp.push(x);
                 }
                 elements.push(Packet::Int(temp.parse().unwrap())) // append x
