@@ -4,6 +4,7 @@ mod eight;
 mod eleven;
 mod five;
 mod four;
+mod fourteen;
 mod nine;
 mod one;
 mod seven;
@@ -43,6 +44,8 @@ fn main() {
     println!("{}", bench(twelve::solve::b, "src/twelve/input"));
     println!("{}", bench(thirteen::solve::a, "src/thirteen/input"));
     println!("{}", bench(thirteen::solve::b, "src/thirteen/input"));
+    println!("{}", bench(fourteen::solve::a, "src/fourteen/input"));
+    println!("{}", bench(fourteen::solve::b, "src/fourteen/input"));
     println!("└{}┴{}┴{}┘", "─".repeat(14), "─".repeat(29), "─".repeat(19));
 }
 
